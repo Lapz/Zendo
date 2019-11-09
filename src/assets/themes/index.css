@@ -1,0 +1,31 @@
+/* purgecss start ignore */
+@tailwind base;
+/* purgecss end ignore */
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3 {
+  @apply .font-normal;
+}
+
+h1 {
+  @apply .text-xl .leading-loose;
+}
+
+h2 {
+  @apply .text-base .leading-relaxed;
+}
+
+h3 {
+  @apply .text-sm .leading-snug;
+}
+
+.grey--text {
+  @apply .text-gray-800;
+}
+
+.website--title {
+  @apply .leading-tight .text-6xl;
+}

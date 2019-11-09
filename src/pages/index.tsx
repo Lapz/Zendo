@@ -1,6 +1,8 @@
 import React, { useState } from "react"
 import Head from "next/head"
 import { useStore } from "../stores"
+import Card from "../components/website/Card"
+import AddTodo from "../components/forms/AddTodo"
 
 const Home = () => {
   const store = useStore()
@@ -11,6 +13,16 @@ const Home = () => {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Card className="p-6 m-6 bg-teal " justify="center">
+        <h1>Welcome to Zendo</h1>
+        <p className="grey--text">
+          To get started, just add a new save and viola.
+        </p>
+
+        <AddTodo priorities={[]} />
+      </Card>
+
       <div className="hero">
         <h1 className="title">Welcome to Next.js!</h1>
         <p className="description">

@@ -1,10 +1,9 @@
 import { IStore, initializeStore, StoreProvider } from "../stores"
 import React from "react"
-
 import App from "next/app"
 import { getSnapshot } from "mobx-state-tree"
 import { NextComponentType, NextPageContext } from "next"
-
+import "../assets/themes/index.css"
 interface IOwnProps {
   isServer: boolean
   initialState: IStore
