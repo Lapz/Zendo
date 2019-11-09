@@ -1,11 +1,9 @@
 import { IStore, initializeStore, StoreProvider } from "../stores"
 import React from "react"
-import theme from "../theme/theme"
+
 import App from "next/app"
 import { getSnapshot } from "mobx-state-tree"
 import { NextComponentType, NextPageContext } from "next"
-import { ThemeProvider } from "@material-ui/styles"
-import { CssBaseline } from "@material-ui/core"
 
 interface IOwnProps {
   isServer: boolean
@@ -55,12 +53,9 @@ export default class MyApp extends App<IOwnProps> {
 
     return (
       <React.Fragment>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <StoreProvider>
-            <Component {...pageProps} />
-          </StoreProvider>
-        </ThemeProvider>
+        <StoreProvider>
+          <Component {...pageProps} />
+        </StoreProvider>
       </React.Fragment>
     )
   }
