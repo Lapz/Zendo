@@ -7,11 +7,11 @@ module.exports = withPlugins([
   [
     withCss(
       withPurgeCss({
-        // purgeCss: {
-        //   content: ["./pages/**/*.tsx", "./components/**/*.tsx"],
-        //   defaultExtractor: (content) =>
-        //     content.match(/[A-Za-z0-9-_:/]+/g) || []
-        // }
+        purgeCss: {
+          content: ["./pages/**/*.tsx", "./components/**/*.tsx"],
+          defaultExtractor: (content) =>
+            content.match(/[A-Za-z0-9-_:/]+/g) || []
+        }
       })
     )
   ]

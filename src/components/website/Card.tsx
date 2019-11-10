@@ -1,48 +1,56 @@
-const { matches } = require("z")
+import {
+  Card as MaterialCard,
+  Box as MaterialBox,
+  CardContent as MaterialCardContent
+} from "@material-ui/core"
 
-interface ICardProps extends React.HTMLAttributes<HTMLDivElement> {
-  shadow?: boolean
-  rounded?: boolean
-  justify?: "start" | "center" | "end" | "between" | "around"
+import clsx from "clsx"
+import { CardProps } from "material-ui"
+import { makeStyles } from "@material-ui/styles"
+import theme from "../../theme/theme"
+interface ICardProps extends CardProps {
+  justify?: "start" | "center" | "end" | "space-between" | "space-round"
+  padding?: number
+  maxWidth?: number
+  maxHeight?: number
+  align?: "start" | "center" | "normal" | "end" | "space-between"
 }
+
+const useStyles = ({ padding, justify, align, maxHeight, maxWidth }) =>
+  makeStyles({
+    card: {
+      display: "flex",
+      justifyContent: justify,
+      padding,
+      alignContent: align,
+      maxHeight,
+      maxWidth
+    }
+  })
 
 const Card: React.FC<ICardProps> = ({
   className = "",
-  shadow = true,
-  rounded = true,
   children,
-  justify
+  justify,
+  padding,
+  align,
+  maxHeight,
+  maxWidth
 }) => {
-  let justifyClass: string = ""
-
-  switch (justify) {
-    case "start":
-      justifyClass = "justify-start"
-      break
-    case "center":
-      justifyClass = "justify-center"
-      break
-    case "end":
-      justifyClass = "justify-end"
-      break
-    case "between":
-      justifyClass = "justify-between"
-      break
-    case "around":
-      justifyClass = "justify-around"
-      break
-    default:
-      break
-  }
+  const classes = useStyles({
+    justify,
+    padding,
+    align,
+    maxHeight,
+    maxWidth
+  })({})
 
   return (
-    <div
-      className={`${className} ${rounded ? "rounded" : ""} ${
-        shadow ? "shadow-lg" : ""
-      } ${justifyClass}`}
-    >
-      {children}
-    </div>
+    <MaterialCard raised className={classes.card}>
+      <MaterialBox display="flex" justifyContent={justify}>
+        <MaterialCardContent>{children}</MaterialCardContent>
+      </MaterialBox>
+    </MaterialCard>
   )
 }
 

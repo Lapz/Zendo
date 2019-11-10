@@ -3,6 +3,8 @@ import Head from "next/head"
 import { useStore } from "../stores"
 import Card from "../components/website/Card"
 import AddTodo from "../components/forms/AddTodo"
+import theme from "../theme/theme"
+import { Container } from "@material-ui/core"
 
 const Home = () => {
   const store = useStore()
@@ -14,14 +16,20 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Card className="p-6 m-6 bg-teal " justify="center">
+      <Card
+        className="p-6 m-6 bg-teal "
+        align="center"
+        justify="center"
+        maxWidth={275}
+        padding={theme.spacing(4)}
+      >
         <h1>Welcome to Zendo</h1>
         <p className="grey--text">
           To get started, just add a new save and viola.
         </p>
-
-        <AddTodo priorities={[]} />
       </Card>
+
+      <AddTodo priorities={[]} />
 
       <div className="hero">
         <h1 className="title">Welcome to Next.js!</h1>

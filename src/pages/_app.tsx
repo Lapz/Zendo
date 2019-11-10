@@ -3,7 +3,9 @@ import React from "react"
 import App from "next/app"
 import { getSnapshot } from "mobx-state-tree"
 import { NextComponentType, NextPageContext } from "next"
-import "../assets/themes/index.css"
+import { ThemeProvider } from "@material-ui/styles"
+import { CssBaseline } from "@material-ui/core"
+import theme from "../theme/theme"
 interface IOwnProps {
   isServer: boolean
   initialState: IStore
@@ -52,9 +54,12 @@ export default class MyApp extends App<IOwnProps> {
 
     return (
       <React.Fragment>
-        <StoreProvider>
-          <Component {...pageProps} />
-        </StoreProvider>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <StoreProvider>
+            <Component {...pageProps} />
+          </StoreProvider>
+        </ThemeProvider>
       </React.Fragment>
     )
   }
