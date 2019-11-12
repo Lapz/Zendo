@@ -7,7 +7,7 @@ import {
 import clsx from "clsx"
 import { CardProps } from "material-ui"
 import { makeStyles } from "@material-ui/styles"
-import theme from "../../theme/theme"
+
 interface ICardProps extends CardProps {
   justify?: "start" | "center" | "end" | "space-between" | "space-round"
   padding?: number
@@ -46,7 +46,7 @@ const Card: React.FC<ICardProps> = ({
   })({})
 
   return (
-    <MaterialCard raised className={classes.card}>
+    <MaterialCard raised className={clsx(className, classes.card)}>
       <MaterialBox display="flex" justifyContent={justify}>
         <MaterialCardContent>{children}</MaterialCardContent>
       </MaterialBox>

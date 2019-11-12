@@ -20,6 +20,7 @@ interface IFormFieldProps extends React.HTMLAttributes<HTMLInputElement> {
   label?: string
   placeholder?: string
   labelClasses?: string
+  multiline?: boolean
   value: string
   name: string
   required?: boolean
@@ -74,6 +75,7 @@ const FormCheckBox: React.FC<IFormCheckBoxProps> = ({
 const FormField: React.FC<IFormFieldProps> = ({
   label,
   labelClasses = "",
+  multiline = false,
   placeholder = "",
   value,
   name,
@@ -89,6 +91,7 @@ const FormField: React.FC<IFormFieldProps> = ({
       required={required}
       onChange={handleChange}
       placeholder={placeholder}
+      multiline={multiline}
     />
   )
 }

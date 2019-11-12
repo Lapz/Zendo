@@ -1,5 +1,4 @@
 import { useFormik } from "formik"
-import { values } from "mobx"
 import { FormField, FormCheckBox, FormSelect } from "../website/Form"
 import Card from "../website/Card"
 import theme from "../../theme/theme"
@@ -60,6 +59,7 @@ const AddTodoForm: React.FC<IAddTodoFormProps> = () => {
       <Card
         className="pa-6 ma-4 flex"
         justify="center"
+        maxWidth={300}
         padding={theme.spacing(1)}
       >
         <form
@@ -72,6 +72,7 @@ const AddTodoForm: React.FC<IAddTodoFormProps> = () => {
               name="description"
               placeholder="What to do ?"
               required
+              multiline
               handleChange={formik.handleChange}
             ></FormField>
 
