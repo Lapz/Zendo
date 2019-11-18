@@ -6,6 +6,7 @@ import AddTodo from "../components/forms/AddTodo"
 import theme from "../theme/theme"
 import { Container, Theme } from "@material-ui/core"
 import { makeStyles } from "@material-ui/styles"
+import Board from "../components/website/Board"
 
 const useStyles = makeStyles((theme: Theme) => ({
   home: {
@@ -27,6 +28,7 @@ const Home = () => {
 
       <div className={classes.home}>
         <AddTodo priorities={[]} />
+
         {/* <Card
           className={classes.home}
           align="center"
@@ -40,6 +42,11 @@ const Home = () => {
           </p>
           
         </Card> */}
+      </div>
+
+      <div className={classes.home}>
+        <Board columns={[]} />
+        {/* <Board columns={[]} /> */}
       </div>
 
       <div className="hero">

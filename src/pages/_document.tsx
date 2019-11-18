@@ -2,7 +2,7 @@ import { ServerStyleSheets } from "@material-ui/styles"
 import Document, { Head, Main, NextScript } from "next/document"
 import React from "react"
 import theme from "../theme/theme"
-
+import { resetServerContext } from "react-beautiful-dnd"
 class MyDocument extends Document {
   public render() {
     return (
@@ -56,10 +56,12 @@ MyDocument.getInitialProps = async (ctx) => {
   const sheets = new ServerStyleSheets()
   const originalRenderPage = ctx.renderPage
 
-  ctx.renderPage = () =>
-    originalRenderPage({
+  ctx.renderPage = () => {
+    resetServerContext()
+    return originalRenderPage({
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />)
     })
+  }
 
   const initialProps = await Document.getInitialProps(ctx)
 
