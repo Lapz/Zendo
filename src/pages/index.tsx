@@ -1,9 +1,22 @@
 import React, { useState } from "react"
 import Head from "next/head"
 import { useStore } from "../stores"
+import Card from "../components/website/Card"
+import AddTodo from "../components/forms/AddTodo"
+import theme from "../theme/theme"
+import { Container, Theme } from "@material-ui/core"
+import { makeStyles } from "@material-ui/styles"
 
+const useStyles = makeStyles((theme: Theme) => ({
+  home: {
+    display: "flex",
+    justifyContent: "center",
+    marginTop: theme.spacing(4)
+  }
+}))
 const Home = () => {
   const store = useStore()
+  const classes = useStyles({})
 
   return (
     <div>
@@ -11,6 +24,24 @@ const Home = () => {
         <title>Home</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <div className={classes.home}>
+        <AddTodo priorities={[]} />
+        {/* <Card
+          className={classes.home}
+          align="center"
+          justify="center"
+          maxWidth={275}
+          padding={theme.spacing(4)}
+        >
+          <h1>Welcome to Zendo</h1>
+          <p className="grey--text">
+            To get started, just add a new save and viola.
+          </p>
+          
+        </Card> */}
+      </div>
+
       <div className="hero">
         <h1 className="title">Welcome to Next.js!</h1>
         <p className="description">

@@ -1,12 +1,11 @@
 import { IStore, initializeStore, StoreProvider } from "../stores"
 import React from "react"
-import theme from "../theme/theme"
 import App from "next/app"
 import { getSnapshot } from "mobx-state-tree"
 import { NextComponentType, NextPageContext } from "next"
 import { ThemeProvider } from "@material-ui/styles"
 import { CssBaseline } from "@material-ui/core"
-
+import theme from "../theme/theme"
 interface IOwnProps {
   isServer: boolean
   initialState: IStore
