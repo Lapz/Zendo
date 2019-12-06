@@ -7,7 +7,15 @@ import {
   DroppableProvided
 } from "react-beautiful-dnd"
 import { useState } from "react"
-import { Card, CardContent, Theme } from "@material-ui/core"
+import {
+  Card,
+  CardContent,
+  Theme,
+  Typography,
+  Checkbox,
+  CardActions
+} from "@material-ui/core"
+
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     // overflowX: "hidden",
@@ -30,11 +38,27 @@ interface IBoardProps {
   columns: unknown[]
 }
 
-const TodoItem: React.FC<{ todo: string }> = ({ todo }) => {
+const TodoItemTitle: React.FC<{ title: string }> = ({ title }) => {
+  return (
+    <Typography variant="h5" component="h2" color="textSecondary" gutterBottom>
+      {title}
+    </Typography>
+  )
+}
+
+const TodoItem: React.FC<{ todo: string; checked: boolean }> = ({
+  todo,
+  checked
+}) => {
   const classes = useStyles({})
   return (
     <Card className={classes.card}>
+      <TodoItemTitle title={todo} />
       <CardContent>{todo}</CardContent>
+
+      <CardActions>
+        <Checkbox checked={checked} />
+      </CardActions>
     </Card>
   )
 }
@@ -61,7 +85,6 @@ const Board: React.FC<IBoardProps> = ({ columns }) => {
     if (!result.destination) {
       return
     }
-
     const source = result.source
     const destination = result.destination
     // did not move anywhere - can bail early
@@ -71,16 +94,13 @@ const Board: React.FC<IBoardProps> = ({ columns }) => {
     ) {
       return
     }
-
     if (result.type === "COLUMN") {
       const reOrdered: string[] = reorder(
         ordered,
         source.index,
         destination.index
       )
-
       setOrderd(reOrdered)
-
       return
     }
   }
@@ -88,7 +108,7 @@ const Board: React.FC<IBoardProps> = ({ columns }) => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className={classes.root}>
-        <Droppable type="COLUMN" direction="horizontal" droppableId="board">
+        <Droppable type="COLUMN" droppableId="board">
           {(provided: DroppableProvided) => (
             <div
               className={classes.container}
@@ -107,7 +127,7 @@ const Board: React.FC<IBoardProps> = ({ columns }) => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <TodoItem todo={key} />
+                      <TodoItem todo={key} checked={index % 2 == 0} />
                     </div>
                   )}
                 </Draggable>
